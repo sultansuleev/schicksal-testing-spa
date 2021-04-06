@@ -1,0 +1,37 @@
+@import "index.css";
+
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body, #root {
+    min-height: 100vh;
+}
+
+.topworkz {
+    color: #000000;
+}
+
+.topworkz_nav a {
+    color: #000000 !important;
+}
+
+.portfolio-block.block-intro .avatar {
+    width: 286px;
+}
+
+.heading h2 {
+    color: #000000;
+}
+
+.well {
+    background-color: rgba(245, 245, 245, 0.6);
+}
+
+.edit-cust-profile {
+    position: absolute;
+    right: 7%;
+    top: 12%;
+    z-index: 999999999999999;
+}
