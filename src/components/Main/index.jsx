@@ -5,6 +5,7 @@ import Login from './Login';
 import Register from './Register';
 import Profile from './Profile';
 import Edit from './Edit';
+import Sidebar from './Admin/SideBar';
 
 const Main = () => {
     return (
@@ -20,6 +21,9 @@ const Main = () => {
                 <Route exact path={'/profile'} render={() => <Profile/>}/>
                 <Route exact path="/edit"
                        render={() => <Edit/>}
+                />
+                <Route exact path="/admin"
+                       render={() => <Sidebar/>}
                 />
             </Switch>
         </main>

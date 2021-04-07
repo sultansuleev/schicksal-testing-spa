@@ -5,8 +5,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
-html, body, #root {
-    min-height: 100vh;
+html, body, #root, main {
+    background-color: #fff;
+    min-height: 90vh;
 }
 
 .topworkz {
@@ -34,4 +35,17 @@ html, body, #root {
     right: 7%;
     top: 12%;
     z-index: 999999999999999;
+}
+
+.admin{
+    min-height: 85vh;
+}
+
+.admin-table{
+    background-color: #d8c980;
+}
+
+.cust-weight {
+    top: -33px;
+    left: 16px;
 }

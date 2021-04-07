@@ -40,7 +40,7 @@ const Register = () => {
                                             aria-describedby="alreadyReg">Register
                                     </button>
                                     <small id="alreadyReg" className="form-text text-muted">
-                                        Already have an account?
+                                        Already have an account?&nbsp;
                                         <NavLink to='/login'>
                                             Sign In
                                         </NavLink>

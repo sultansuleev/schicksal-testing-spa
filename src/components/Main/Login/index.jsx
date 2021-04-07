@@ -31,7 +31,7 @@ const Login = () => {
                                             aria-describedby="alreadyReg">Login
                                     </button>
                                     <small id="alreadyReg" className="form-text text-muted">
-                                        Not registered yet?
+                                        Not registered yet? &nbsp;
                                         <NavLink to='/register'>
                                             Solve it as soon as possible
                                         </NavLink>
