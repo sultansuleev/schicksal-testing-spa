@@ -3,8 +3,8 @@
 My simple project that I created for course "Java EE Business Component and Web-services Developer"
 
 # In the process of development
-- Authorization
-- Profile (Page and Editing)
+- <s> Authorization</s>
+- <s>Profile (Page and Editing)</s>
 - Functional Admin Page
 - Testing System
 
