@@ -1,6 +1,7 @@
 
 # [ReactJS] Schicksal Testing
 My simple project that I created for course "Java EE Business Component and Web-services Developer"
+- Frontend part of the project is located [here](https://github.com/sultansuleev/schicksal-testing-spa)
 
 # In the process of development
 - <s> Authorization</s>
