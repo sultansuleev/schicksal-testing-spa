@@ -1,8 +1,24 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import Helmet from 'react-helmet';
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
+import CardService from '../../../service/spring-service';
 
 const Profile = () => {
+    const [redirect, setRedirect] = useState(null);
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        CardService.getCurrentUser().then(response => {
+            setUser(response.data);
+        });
+
+        if (!user) setRedirect("/");
+    }, []);
+
+    if (redirect) {
+        return <Redirect to={this.state.redirect}/>;
+    }
+
     return (
         <Fragment>
             <Helmet>
@@ -23,14 +39,13 @@ const Profile = () => {
                                 </NavLink>
                             </div>
                             <div className="text-sub-con d-flex flex-row">
-                                <img className="img-thumbnail rounded mb-4 " src="/images/avatar.jpg" alt="avatar"
+                                <img className="img-thumbnail rounded mb-4 " src="/images/avatar.png" alt="avatar"
                                      style={{width: '195px'}}/>
-                                    <div className="float-right" style={{width: 'max-content'}}>
-                                        <h2>Qara Zhigit</h2>
-                                        <p>IITU, Almaty, KZ</p>
-                                        <i>"The wolf isn't the one who is the wolf, but the one who didn't act in
-                                            Twilight."</i>
-                                    </div>
+                                <div className="float-right" style={{width: 'max-content'}}>
+                                    <h2>{user.fullName}</h2>
+                                    <p>{user.university}, {user.location}</p>
+                                    <i>"{user.quote}"</i>
+                                </div>
                             </div>
                         </div>
                     </div>

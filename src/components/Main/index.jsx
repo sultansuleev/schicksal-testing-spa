@@ -6,8 +6,10 @@ import Register from './Register';
 import Profile from './Profile';
 import Edit from './Edit';
 import Sidebar from './Admin/SideBar';
+import CardService from "../../service/spring-service";
 
 const Main = () => {
+    let history = useHistory();
     return (
         <main>
             <Switch>
@@ -16,7 +18,12 @@ const Main = () => {
                     <Login/>
                 </Route>
                 <Route exact path = "/register">
-                    <Register/>
+                    <Register addUsr={(user)=>{
+                        console.log(typeof user);
+                        CardService.register(user)
+                            .then(res=>{if(res.status===200){
+                                history.push("/login");
+                            }});}}/>
                 </Route>
                 <Route exact path={'/profile'} render={() => <Profile/>}/>
                 <Route exact path="/edit"

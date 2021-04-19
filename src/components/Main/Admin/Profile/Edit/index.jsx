@@ -14,7 +14,7 @@ const Edit = () => {
                             <h2>Edit Profile</h2>
                             <div className="text-sub-con">
                                 <form>
-                                    <img className="img-thumbnail rounded mb-4 " src="/images/avatar.jpg"
+                                    <img className="img-thumbnail rounded mb-4 " src="/images/avatar.png"
                                          alt="avatar" style={{width: '195px'}}/>
                                     <div className="form-group">
                                         <label htmlFor="name">Name</label>

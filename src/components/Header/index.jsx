@@ -1,7 +1,15 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
+import CardService from '../../service/spring-service';
 
-const Header = () => {
+const Header = (props) => {
+    let history = useHistory();
+    function logout() {
+        CardService.logout();
+        history.push("/");
+        window.location.reload();
+    }
+
     return (
         <header className="navbar navbar-expand-lg navbar-light fixed-top well">
             <div className="container">
@@ -18,21 +26,39 @@ const Header = () => {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <NavLink to='/login' activeClassName="nav-link active" className="nav-link">
-                                Auth
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to='/profile' activeClassName="nav-link active" className="nav-link">
-                                Profile
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to='/admin' activeClassName="nav-link active" className="nav-link">
-                                Admin
-                            </NavLink>
-                        </li>
+                        {props.token ?
+                            <>
+                                <li className="nav-item">
+                                    <NavLink to='/profile' activeClassName="nav-link active" className="nav-link">
+                                        Profile
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to='/admin' activeClassName="nav-link active" className="nav-link">
+                                        Admin
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/login" activeClassName="nav-link active" className="nav-link" onClick={logout}>
+                                        Log out
+                                    </NavLink>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li className="nav-item">
+                                    <NavLink to='/register' activeClassName="nav-link active" className="nav-link">
+                                        Register
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to='/login' activeClassName="nav-link active" className="nav-link">
+                                        Login
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
                     </ul>
                 </div>
             </div>

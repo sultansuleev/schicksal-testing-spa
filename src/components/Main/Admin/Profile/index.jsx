@@ -19,7 +19,7 @@ const AdminProfile = () => {
                                 </NavLink>
                             </div>
                             <div className="text-sub-con d-flex flex-row">
-                                <img className="img-thumbnail rounded mb-4 " src="/images/avatar.jpg" alt="avatar"
+                                <img className="img-thumbnail rounded mb-4 " src="/images/avatar.png" alt="avatar"
                                      style={{width: '195px'}}/>
                                 <div className="float-right" style={{width: 'max-content'}}>
                                     <h2>Qara Zhigit</h2>

@@ -1,8 +1,35 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import Helmet from 'react-helmet';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
+import CardService from '../../../service/spring-service';
 
 const Login = () => {
+    let history = useHistory();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleEmailChange = event =>{
+        setEmail(event.target.value);
+    }
+
+    const handlePasswordChange = event =>{
+        setPassword(event.target.value);
+    }
+
+    const handleSubmit = event =>{
+        event.preventDefault();
+        const inputData = {email, password};
+        CardService.login(inputData)
+            .then(async res=>{
+                console.log("Pered PUSH");
+                await history.push("/profile");
+                console.log("Posle PUSH");
+                window.location.reload();
+            }).catch(error => {alert("Oshibka")});
+
+    }
+
     return (
         <Fragment>
             <Helmet>
@@ -14,20 +41,20 @@ const Login = () => {
                         <div className="col-lg-8 mx-auto">
                             <h2>Sign In</h2>
                             <div className="text-sub-con">
-                                <form>
+                                <form  onSubmit = {handleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="email">Email address</label>
                                         <input type="email" className="form-control" id="email"
-                                               aria-describedby="emailHelp" placeholder="Enter email"/>
+                                               aria-describedby="emailHelp" value = {email} placeholder="Enter email" onChange = {handleEmailChange}/>
                                         <small id="emailHelp" className="form-text text-muted">We'll never share
                                             your email with anyone else.</small>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="pass">Password</label>
-                                        <input type="password" className="form-control" id="pass"
+                                        <input type="password" className="form-control" id="pass" value = {password} onChange = {handlePasswordChange}
                                                placeholder="Password"/>
                                     </div>
-                                    <button type="submit" className="btn btn-primary"
+                                    <button type="submit" className="btn btn-success"
                                             aria-describedby="alreadyReg">Login
                                     </button>
                                     <small id="alreadyReg" className="form-text text-muted">
