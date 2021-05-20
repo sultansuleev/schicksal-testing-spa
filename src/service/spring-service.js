@@ -93,6 +93,85 @@ class CardService {
         });
     }
 
+    getUsers(){
+        return instSec.get("/admin/users");
+    }
+
+    addUser(email, password, fullName, uni, loc){
+        return instSec.post( "/admin/addUser", {
+            email: email,
+            password: password,
+            fullName: fullName,
+            university: uni,
+            location: loc
+        })
+    }
+
+    assignRole(data){
+        console.log(data)
+        return instSec.post( "/admin/assignRole", {
+            user_id: data.user_id,
+            role_id: data.role_id
+        })
+    }
+
+    deleteUser(user){
+        return instSec.delete("/admin/deleteUser", {
+            data:{
+                id: user.id,
+                email: user.email,
+                password: user.password,
+                fullName: user.fullName,
+                university: user.university,
+                location: user.location
+            }
+        })
+    }
+
+    getCards() {
+        return instSec.get("/admin/tests");
+    }
+
+    generateTest(){
+        return instSec.get("/admin/generateTest");
+    }
+
+    getRes() {
+        return instSec.get("/admin/ratings");
+    }
+
+    sendTestRes(data){
+        console.log(data)
+        return instSec.post("/admin/addResultat", {
+            user_id: data.user_id,
+            result: data.result
+        });
+    }
+
+    addCards(quiz, correctAns, firstAns, secondAns, thirdAns, fourthAns){
+        return instSec.post( "/admin/addQuiz", {
+            question: quiz,
+            correctAns: correctAns,
+            firstAns: firstAns,
+            secondAns: secondAns,
+            thirdAns: thirdAns,
+            fourthAns: fourthAns
+        })
+    }
+
+    deleteTest(test){
+        return instSec.delete("/admin/deleteCard", {
+            data:{
+                id: test.id,
+                quiz: test.quiz,
+                correctAns: test.correctAns,
+                firstAns: test.firstAns,
+                secondAns: test.secondAns,
+                thirdAns: test.thirdAns,
+                fourthAns: test.fourthAns
+            }
+        })
+    }
 
 }
 export default new CardService();

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 import CardService from '../../service/spring-service';
 
 const Header = (props) => {
+    const [currentUser, setCurrentUser] = useState();
+    const [showAdminBoard, setShowAdminBoard] = useState();
+
     let history = useHistory();
     function logout() {
         CardService.logout();
         history.push("/");
         window.location.reload();
     }
+
+    useEffect(() => {
+        CardService.getCurrentUser().then(response => {
+            setCurrentUser(response.data);
+            setShowAdminBoard(response.data.roles.filter(e => e.role === "ROLE_ADMIN").length > 0)
+        });
+    }, []);
 
     return (
         <header className="navbar navbar-expand-lg navbar-light fixed-top well">
@@ -34,10 +44,16 @@ const Header = (props) => {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to='/admin' activeClassName="nav-link active" className="nav-link">
-                                        Admin
-                                    </NavLink>
+                                    <NavLink to={"/about-us"} activeClassName="nav-link active"
+                                             className="nav-link">About Us</NavLink>
                                 </li>
+                                {showAdminBoard && (
+                                    <li className="nav-item">
+                                        <NavLink to='/admin' activeClassName="nav-link active" className="nav-link">
+                                            Admin
+                                        </NavLink>
+                                    </li>
+                                )}
                                 <li className="nav-item">
                                     <NavLink to="/login" activeClassName="nav-link active" className="nav-link" onClick={logout}>
                                         Log out
@@ -46,6 +62,10 @@ const Header = (props) => {
                             </>
                             :
                             <>
+                                <li className="nav-item">
+                                    <NavLink to={"/about-us"} activeClassName="nav-link active"
+                                             className="nav-link">About Us</NavLink>
+                                </li>
                                 <li className="nav-item">
                                     <NavLink to='/register' activeClassName="nav-link active" className="nav-link">
                                         Register

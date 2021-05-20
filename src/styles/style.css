@@ -1,8 +1,7 @@
 @import "index.css";
 
-
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 html, body, #root, main {
@@ -42,10 +41,14 @@ html, body, #root, main {
 }
 
 .admin-table{
-    background-color: #d8c980;
+    background-color: #aab5bf !important;
 }
 
 .cust-weight {
     top: -33px;
     left: 16px;
+}
+
+.btn-quiz {
+    color: #1d9b6c;
 }

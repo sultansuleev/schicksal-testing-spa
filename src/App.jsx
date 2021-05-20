@@ -14,7 +14,7 @@ export const App = () => {
     return(
         <Fragment>
             <Header token={user} />
-            <Main/>
+            <Main token={user} />
             <Footer/>
         </Fragment>
     );

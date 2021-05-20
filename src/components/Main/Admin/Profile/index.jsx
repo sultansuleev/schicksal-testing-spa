@@ -1,7 +1,23 @@
-import React, {Fragment} from 'react';
-import {NavLink} from "react-router-dom";
+import React, {Fragment, useEffect, useState} from 'react';
+import {NavLink, Redirect} from "react-router-dom";
+import CardService from "../../../../service/spring-service";
 
 const AdminProfile = () => {
+    const [redirect, setRedirect] = useState(null);
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        CardService.getCurrentUser().then(response => {
+            setUser(response.data);
+        });
+
+        if (!user) setRedirect("/");
+    }, []);
+
+    if (redirect) {
+        return <Redirect to={this.state.redirect}/>;
+    }
+
     return (
         <Fragment>
             <div className="content-section text-center"
@@ -11,7 +27,7 @@ const AdminProfile = () => {
                         <div className="col-lg-8 mx-auto" style={{position: 'relative'}}>
                             <h2>My Profile</h2>
                             <div className="d-flex align-items-center justify-content-center edit-cust-profile">
-                                <NavLink to='/editAdminPage' className="d-flex flex-row align-items-center"
+                                <NavLink to='/edit' className="d-flex flex-row align-items-center"
                                          style={{fontSize: '21px'}}>
                                     Edit
                                     <img src="/images/icon-edit.svg" className="ml-2" style={{width: '20px'}}
@@ -22,10 +38,9 @@ const AdminProfile = () => {
                                 <img className="img-thumbnail rounded mb-4 " src="/images/avatar.png" alt="avatar"
                                      style={{width: '195px'}}/>
                                 <div className="float-right" style={{width: 'max-content'}}>
-                                    <h2>Qara Zhigit</h2>
-                                    <p>IITU, Almaty, KZ</p>
-                                    <i>"The wolf isn't the one who is the wolf, but the one who didn't act in
-                                        Twilight."</i>
+                                    <h2>{user.fullName}</h2>
+                                    <p>{user.university}, {user.location}</p>
+                                    <i>"{user.quote}"</i>
                                 </div>
                             </div>
                         </div>
